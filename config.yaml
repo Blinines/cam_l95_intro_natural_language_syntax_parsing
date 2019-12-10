@@ -1,0 +1,17 @@
+config_benepar:
+  benepar_sent_word_tok_downloaded: true
+  parsing_model_downloaded: true
+config_stanford_nlp:
+  default:
+    models_dir: ./stanfordnlp_resources
+  pre_tokenized:
+    pos_batch_size: 1000
+    pos_model_path: ./stanfordnlp_resources/en_ewt_models/en_ewt_tagger.pt
+    pos_pretrain_path: ./stanfordnlp_resources/en_ewt_models/en_ewt.pretrain.pt
+    processors: tokenize,pos
+    tokenize_pretokenized: true
+general:
+  os: Windows
+  test_raw_sentences: './data/raw/sent_test.txt'
+  raw_sentences: './data/raw/sentences.txt'
+  parsed_sent_template: './data/parsed/parsed_sentences_{0}.txt'

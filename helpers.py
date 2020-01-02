@@ -6,3 +6,9 @@ def get_lines(lines_path):
         for _, line in enumerate(fp):
             lines.append(line[:-1])
     return lines
+
+def get_elt_to_index(l):
+    res = {}
+    for index, elt in l:
+        res[elt] = index
+    return res

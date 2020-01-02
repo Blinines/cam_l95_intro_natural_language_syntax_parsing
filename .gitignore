@@ -5,5 +5,4 @@ stanfordnlp_resources
 __pycache__
 .vscode
 venv
-tips.txt
-test.py
+test.py 

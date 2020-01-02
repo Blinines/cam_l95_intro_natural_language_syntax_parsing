@@ -1,0 +1,42 @@
+The slightly simplified version of the Viterbi algorithm that we present takes as input a single HMM and a sequence of observed words O and returns the most probable state/tag sequence Q together with its probability.
+index: 1	form: The	cpos: DT	pos: DT	head: 4	deprel: det 
+index: 2	form: slightly	cpos: RB	pos: RB	head: 3	deprel: advmod 
+index: 3	form: simplified	cpos: VBN	pos: VBN	head: 4	deprel: amod 
+index: 4	form: version	cpos: NN	pos: NN	head: 12	deprel: nsubj 
+index: 5	form: of	cpos: IN	pos: IN	head: 8	deprel: case 
+index: 6	form: the	cpos: DT	pos: DT	head: 8	deprel: det 
+index: 7	form: Viterbi	cpos: NNP	pos: NNP	head: 8	deprel: compound 
+index: 8	form: algorithm	cpos: NN	pos: NN	head: 11	deprel: nmod 
+index: 9	form: that	cpos: IN	pos: IN	head: 11	deprel: dobj 
+index: 10	form: we	cpos: PRP	pos: PRP	head: 11	deprel: nsubj 
+index: 11	form: present	cpos: VBP	pos: VBP	head: 4	deprel: acl 
+index: 12	form: takes	cpos: VBZ	pos: VBZ	head: 0	deprel: root 
+index: 13	form: as	cpos: IN	pos: IN	head: 14	deprel: case 
+index: 14	form: input	cpos: NN	pos: NN	head: 12	deprel: nmod 
+index: 15	form: a	cpos: DT	pos: DT	head: 17	deprel: det 
+index: 16	form: single	cpos: JJ	pos: JJ	head: 17	deprel: amod 
+index: 17	form: HMM	cpos: NN	pos: NN	head: 12	deprel: dobj 
+index: 18	form: and	cpos: CC	pos: CC	head: 17	deprel: cc 
+index: 19	form: a	cpos: DT	pos: DT	head: 20	deprel: det 
+index: 20	form: sequence	cpos: NN	pos: NN	head: 17	deprel: conj 
+index: 21	form: of	cpos: IN	pos: IN	head: 23	deprel: case 
+index: 22	form: observed	cpos: JJ	pos: JJ	head: 23	deprel: amod 
+index: 23	form: words	cpos: NNS	pos: NNS	head: 20	deprel: nmod 
+index: 24	form: O	cpos: CD	pos: CD	head: 23	deprel: dep 
+index: 25	form: and	cpos: CC	pos: CC	head: 12	deprel: cc 
+index: 26	form: returns	cpos: VBZ	pos: VBZ	head: 12	deprel: conj 
+index: 27	form: the	cpos: DT	pos: DT	head: 34	deprel: det 
+index: 28	form: most	cpos: RBS	pos: RBS	head: 29	deprel: advmod 
+index: 29	form: probable	cpos: JJ	pos: JJ	head: 34	deprel: amod 
+index: 30	form: state	cpos: NN	pos: NN	head: 34	deprel: compound 
+index: 31	form: /	cpos: :	pos: :	head: 34	deprel: punct 
+index: 32	form: tag	cpos: NN	pos: NN	head: 34	deprel: compound 
+index: 33	form: sequence	cpos: NN	pos: NN	head: 34	deprel: compound 
+index: 34	form: Q	cpos: NNP	pos: NNP	head: 26	deprel: dobj 
+index: 35	form: together	cpos: RB	pos: RB	head: 26	deprel: advmod 
+index: 36	form: with	cpos: IN	pos: IN	head: 38	deprel: case 
+index: 37	form: its	cpos: PRP$	pos: PRP$	head: 38	deprel: nmod:poss 
+index: 38	form: probability	cpos: NN	pos: NN	head: 35	deprel: nmod 
+index: 39	form: .	cpos: .	pos: .	head: 12	deprel: punct 
+
+======

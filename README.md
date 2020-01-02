@@ -15,6 +15,8 @@ The selected parsers (and useful resources) are listed below :
 For the Berkeley Neural Parser a conversion was necessary to convert trees to grammar relations. We used the Stanford conversion script.
 - https://github.com/dmcc/PyStanfordDependencies
 
+To evaluate the accuracies of the different parsers, we used gold standards using Stanford Dependencies and CoNLL-X format.
+
 Installation
 ----------------------
 All code was executed using Python 3 and a virtual environment.

@@ -1,0 +1,1 @@
+Thus the trained "pure HMM" tagger is probably best suited to cases where no training data is available, for example, when tagging languages for which no data was previously tagged.

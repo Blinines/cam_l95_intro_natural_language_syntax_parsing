@@ -1,0 +1,59 @@
+General 
+- http://kodu.ut.ee/~treumuth/NLP/syntax.pdf
+
+For conversion script
+' and " 
+e.g. raising errors
+
+For the report
+
+
+
+
+Introduction
+
+Background
+
+
+https://nlp.stanford.edu/software/dependencies_manual.pdf
+
+
+Gold standard => Stanford dependencies, original version.
+https://nlp.stanford.edu/software/dependencies_manual.pdf
+From version 3.5.2, default representation is the new UD (representation used in Benepar)
+https://nlp.stanford.edu/pubs/USD_LREC14_paper_camera_ready.pdf
+
+Major changes
+- treatment of prepositions and case marking. No prep/pobj, instead any case-marking element (prepositions,
+postpositions, clitic case markers) = dependent of the noun it attaches to or introduces 
+*nmod* labels relations between two content words, *prep* case depending on its complement
+
+
+When comparing gold standard to references
+- correct if same head and dependency, and same dependency relation (either the same, either equivalent regarding
+the changes between original SD and UD)
+- summed up in a table
+
+
+Notes on Benepar sentences
+- sent-1. Different treatment of prepositions leads to different head tagging. All OK.
+- sent-2. Whether 'might be snow' should have had a 'cop' tag for the snow, parser and gold standard yield different results
+which shed light to the ambiguity. About the same. stays (about the same) (over ...) or stays (about the same over ())
+- sent-3. 10K versus 10 K but same analysis, counting it as one for the accuracies. to aux vs mark, POS nn vs dep because
+unknown, per second to words or and, only to 1 or MB, uses only 1 MB of RAM, parser faultly assigning head to adverbs 
+or punct.
+- sent-4. Parser finds two sentences hence two root structures. punct to root for the parser ? including interjections
+vmod vs case + nmod. Struggles to deal with parenthesis.
+- sent-5. Two sentences idied likewise for the gold standard and the parser. prt syntax, difficulties with `the original
+Brown and C5 tagsets`, punctuations head, C5 as nummod for example, parser heading many tokens to the 'each'
+- sent-6. Confusions with the mathematical formulas like O=(o1,o2,..oT) hence creates new sentences when there is the =
+sign. For more adequate comparison with the gold standard, we remove the = part to get the new parsing. i.e. keeping only
+O and Q. Most probablec tag/sequence => does not analyse correctly the head, mainly because of this /. head of algorithm,
+most probable state, together with.
+- sent-7. Parser uses three token for composed verbs used as adjectives (EM-trained, hand-tagged), hence in order to
+compare to the gold standard, we just use trained and tagges in order to have the same number of words. Punctuation.
+Is probably best suited : advmod vs amod, passive vs active form. Adverb vs adjective.
+- sent-8. Parser detects two sentences because of the dot hence last sentence is alone. In the gold standard we chose
+to use parataxis instead. proceed (to fashlane) (under) vs (proceed (to fashlane (under)))
+- sent-9. Operates ccomp vs dep. Punctuation same problem. advcl vs ccomp.
+- sent-10. MWE, pcomp vs advcl (constantly worrying + cf one example in previous example), mark

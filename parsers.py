@@ -56,6 +56,22 @@ class StanfordNLP:
         f.close()
 
         return self
+    
+    def write_conll_format(self, lines_path, save_path):
+        f = open(save_path, 'w+')
+        lines = get_lines(lines_path=lines_path)
+
+        for index, line in enumerate(lines):
+            f.write('# sent_id = sent-{0} \n'.format(index+1))
+            f.write('# text = {0} \n'.format(line))
+            doc = self.nlp(line)
+            for sent in doc.sentences:
+                for i, word in enumerate(sent.words):
+                    f.write('{0}\t{1}\t_\t_\t_\t_\t{2}\t{3}\t_\t_\n'
+                            .format(i+1, word.text, word.governor, word.dependency_relation))
+                f.write('\n')
+        f.close()
+        return self
 
 
 class BerkeleyNLP:
@@ -102,6 +118,23 @@ class BerkeleyNLP:
         
         f.close()
         return self
+    
+    def write_conll_format(self, lines_path, save_path):
+        f = open(save_path, 'w+')
+        lines = get_lines(lines_path=lines_path)
+
+        for index, line in enumerate(lines):
+            f.write('# sent_id = sent-{0} \n'.format(index+1))
+            f.write('# text = {0} \n'.format(line))
+            doc = self.nlp(line)
+            for sent in list(doc.sents):
+                dependency = self.sd.convert_tree(sent._.parse_string)
+                for token in dependency:
+                    f.write('{0}\t{1}\t_\t_\t_\t_\t{2}\t{3}\t_\t_\n'
+                            .format(token.index, token.form, token.head, token.deprel))
+            f.write('\n')
+        f.close()
+        return self
 
 
 class RaspNLP:
@@ -118,4 +151,7 @@ class RaspNLP:
             subprocess.call(command_line, shell=True)
         else:
             print("RASP not configured for this OS, aborting")
+        return self
+    
+    def write_conll_format(self, lines_path, save_path):
         return self

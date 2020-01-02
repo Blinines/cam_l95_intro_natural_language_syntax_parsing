@@ -12,6 +12,72 @@ config_stanford_nlp:
     tokenize_pretokenized: true
 general:
   os: Windows
+  gold_standard: './data/gold_standard/gold_standard.txt'
   test_raw_sentences: './data/raw/sent_test.txt'
   raw_sentences: './data/raw/sentences.txt'
   parsed_sent_template: './data/parsed/parsed_sentences_{0}.txt'
+  parsed_sent_conll: './data/parsed/parsed_sent_conll_{0}.txt'
+  dep_level_0: ['root', 'dep', 'aux', 'auxpass', 'cop', 'agent', 'acomp', 'ccomp', 'pcomp', 
+                'xcomp', 'dobj', 'iobj', 'pobj', 'nsubj', 'nsubjpass', 'csubj', 'csubjpass', 
+                'cc', 'conj', 'discourse', 'expl', 'amod', 'appos', 'advcl', 'det', 'predet', 
+                'preconj', 'vmod', 'mwe', 'mark', 'advmod', 'neg', 'rcmod', 'quantmod', 'nn', 
+                'npadvmod', 'tmod', 'num', 'number', 'prep', 'prepc', 'poss', 'possessive', 
+                'prt', 'parataxis', 'goeswith', 'punct', 'ref', 'xsubj']
+  hierarchy:
+    root: 0
+    dep:
+      aux:
+        auxpass: 0
+        cop: 0
+      arg: 
+        agent: 0
+        comp:
+          acomp: 0
+          ccomp: 0
+          pcomp: 0
+          xcomp: 0
+          obj: 
+            dobj: 0
+            iobj: 0
+            pobj: 0
+        subj:
+            nsubj: 
+                nsubjpass: 0
+            csubj: 
+                csubjpass: 0
+      cc: 0
+      conj: 0
+      discourse: 0
+      expl: 0
+      mod:
+        amod: 0
+        appos: 0
+        advcl: 0
+        det: 0
+        predet: 0
+        preconj: 0
+        vmod: 0
+        mwe: 
+            mark: 0
+        advmod: 
+            neg: 0
+        rcmod: 0
+        quantmod: 0
+        nn: 0
+        npadvmod: 
+            tmod: 0
+        num: 0
+        number: 0
+        prep: 0
+        prepc: 0
+        poss: 0
+        possessive: 0
+        prt: 0
+      parataxis: 0
+      goeswith: 0
+      punct: 0
+      ref: 0
+      sdep: 
+          xsubj: 0
+
+

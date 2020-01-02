@@ -1,0 +1,1 @@
+The slightly simplified version of the Viterbi algorithm that we present takes as input a single HMM and a sequence of observed words O and returns the most probable state/tag sequence Q together with its probability.

@@ -1,0 +1,68 @@
+root: root
+dep: dependent
+    aux - auxiliary
+        auxpass: passive auxiliary
+        cop: copula
+    arg - argument
+        agent: agent
+        comp - complement
+            acomp: adjectival complement
+            ccomp: clausal complement
+            pcomp: prepositional complement
+            xcomp: open clausal complement
+            obj - object
+                dobj: direct object
+                iobj: indirect object
+                pobj: object of a preposition
+        subj - subject
+            nsubj: nominal subject
+                nsubjpass: passive nominal subject
+            csubj: clausal subject
+                csubjpass: clausal passive subject
+    cc: coordination
+    conj: conjunct
+    discourse: discourse element
+    expl: expletive
+    mod - modifier
+        amod: adjectival modifier
+        appos: appositional modifier
+        advcl: adverbial clause modifier
+        det: determiner
+        predet: predeterminer
+        preconj: preconjunct
+        vmod: reduced non-finite verbal modifier
+        mwe: multi-word expression
+            mark: marker
+        advmod: adverb modifier
+            neg: negation modifier
+        rcmod: relative clause modifier
+        quantmod: quantifier phrase modifier
+        nn: noun compound modifier
+        npadvmod: noun phrase as adverbial modifier
+            tmod: temporal modifier
+        num: numeric modifier
+        number: element of compound number
+        prep: prepositional modifier
+        prepc: prepositional clausal modifier
+        poss: possession modifier
+        possessive: possessive modifier
+        prt: phrasal verb particle
+    parataxis: parataxis
+    goeswith: goes with
+    punct: punctuation
+    ref: referent
+    sdep - semantic dependent
+        xsubj: controlling subject
+
+
+
+
+
+
+
+
+
+
+
+
+

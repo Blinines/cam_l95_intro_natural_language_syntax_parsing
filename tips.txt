@@ -20,7 +20,7 @@ https://nlp.stanford.edu/software/dependencies_manual.pdf
 
 Gold standard => Stanford dependencies, original version.
 https://nlp.stanford.edu/software/dependencies_manual.pdf
-From version 3.5.2, default representation is the new UD (representation used in Benepar)
+From version 3.5.2, default representation is the new UD (representation used in Benepar and StanfordNLP)
 https://nlp.stanford.edu/pubs/USD_LREC14_paper_camera_ready.pdf
 
 Major changes
@@ -57,3 +57,24 @@ Is probably best suited : advmod vs amod, passive vs active form. Adverb vs adje
 to use parataxis instead. proceed (to fashlane) (under) vs (proceed (to fashlane (under)))
 - sent-9. Operates ccomp vs dep. Punctuation same problem. advcl vs ccomp.
 - sent-10. MWE, pcomp vs advcl (constantly worrying + cf one example in previous example), mark
+
+
+Notes on StanfordNLP sentences
+- sent-1. 
+- sent-2. neg vs advmod, advmod+advcomp + prepositional group, stays (the same)(over) vs stays(the same over)
+- sent-3. nummod/compound for 10 K, gold 10K, parser 10 K. 10 - 13 - compound and K - 14 - nummod hence compressing
+into 10K - 14 - nummod.is to build aux vs mark. Wrong heads for punct + cc + advmod. acomp vs advmod.
+- sent-4. Parser, unlike Benepar, finds only one sentence. (more or less unique)function vs (more or less)(unique)function,
+including interjections, discourse/parataxis tagging, ... (there are horses) among others.
+- sent-5. 87-tag tokenised into three sequences 87, - and tag. 87 and -'s head is tag hence we just put on this value. prt
+vs case for 'was culled from' (same than for Benepar), for long sequences with a lot of nn often don't find the right head
+of NP + consequently right dep + difficulties of parenthesis
+- sent-6. Same remark than for the Benepar parser, however interesting to see that are parsed differently. => applying the
+same new parsing than for Benepar. That we present, long NP often identifies the head as the last part but not always
+the case, hence bad labelling for conj/cc, state/tag, together with
+- sent-7. Same than for the Benepar parser. Reparsing to get better comparison with gold standard. Is best-suited should
+be active or passive?, negation as determiners, amod/advmod/mark
+- sent-8. Same than Benepar regarding the two sentences. conj and punct.
+- sent-9. cc/punct (provide NB, not most important dependency relation hence ok), simply defining what the media lab is
+- sent-10. Instead of constantly worrying, have to convince companies
+

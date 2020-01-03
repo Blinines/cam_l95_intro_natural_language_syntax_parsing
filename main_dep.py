@@ -13,7 +13,7 @@ for parser in parsers:
     name_save = curr_pars.name_save
     curr_pars.get_dependencies(lines_path=config['raw_sentences'],
                                save_path=config['parsed_sent_template'].format(name_save))
-    curr_pars.get_dependencies(lines_path=config['raw_sentences'],
-                               save_path=config['parsed_sent_conll'].format(name_save))
+    curr_pars.write_conll_format(lines_path=config['raw_sentences'],
+                                 save_path=config['parsed_sent_conll'].format(name_save))
 
 

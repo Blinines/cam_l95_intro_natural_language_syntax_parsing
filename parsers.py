@@ -7,7 +7,7 @@ import spacy
 import benepar
 import StanfordDependencies
 from benepar.spacy_plugin import BeneparComponent   
-from helpers import get_lines
+from helpers import get_lines, get_rasp_structure, get_sent_info
 
 with open('./config.yaml') as file:
     config_global = yaml.load(file, Loader=yaml.FullLoader)
@@ -57,7 +57,7 @@ class StanfordNLP:
 
         return self
     
-    def write_conll_format(self, lines_path, save_path):
+    def write_conll_format(self, lines_path, save_path, parsed_path=None):
         f = open(save_path, 'w+')
         lines = get_lines(lines_path=lines_path)
 
@@ -119,7 +119,7 @@ class BerkeleyNLP:
         f.close()
         return self
     
-    def write_conll_format(self, lines_path, save_path):
+    def write_conll_format(self, lines_path, save_path, parsed_path=None):
         f = open(save_path, 'w+')
         lines = get_lines(lines_path=lines_path)
 
@@ -153,5 +153,22 @@ class RaspNLP:
             print("RASP not configured for this OS, aborting")
         return self
     
-    def write_conll_format(self, lines_path, save_path):
+    def write_conll_format(self, parsed_path, save_path, lines_path=None):
+        # Converting output of RASP algorithm on Linux into conll format.
+        # If output was transferred into Windows system, can be done.
+        f = open(save_path, 'w+', encoding='utf-8')
+        rasp_file = open(parsed_path, 'r', encoding='utf-8')
+        lines = rasp_file.readlines()
+        sent_begin, dep_begin, block_end = get_rasp_structure(lines=lines)
+        nb_sent = len(sent_begin)
+
+        for i in range(nb_sent):
+            f.write('# sent_id = sent-{0} \n'.format(i+1))
+            class_words = get_sent_info(lines=lines, index_sent=sent_begin[i],
+                                        index_dep=dep_begin[i], index_block=block_end[i])
+            for word in class_words:
+                f.write('{0}\t{1}\t_\t_\t_\t_\t{2}\t{3}\t_\t_\n'
+                        .format(word.index, word.form, word.head, word.deprel))
+            f.write('\n')
+        f.close()
         return self

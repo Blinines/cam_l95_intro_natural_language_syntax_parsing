@@ -1,0 +1,38 @@
+# sent_id = sent-1 
+# text = Thus the trained "pure HMM" tagger is probably best suited to cases where no training data is available, for example, when tagging languages for which no data was previously tagged. 
+1	Thus	_	_	_	_	12	advmod	_	_
+2	the	_	_	_	_	8	det	_	_
+3	trained	_	_	_	_	8	amod	_	_
+4	"	_	_	_	_	6	punct	_	_
+5	pure	_	_	_	_	6	amod	_	_
+6	HMM	_	_	_	_	8	compound	_	_
+7	"	_	_	_	_	6	punct	_	_
+8	tagger	_	_	_	_	12	nsubj:pass	_	_
+9	is	_	_	_	_	12	aux:pass	_	_
+10	probably	_	_	_	_	12	advmod	_	_
+11	best	_	_	_	_	12	advmod	_	_
+12	suited	_	_	_	_	0	root	_	_
+13	to	_	_	_	_	14	case	_	_
+14	cases	_	_	_	_	12	obl	_	_
+15	where	_	_	_	_	20	advmod	_	_
+16	no	_	_	_	_	18	det	_	_
+17	training	_	_	_	_	18	compound	_	_
+18	data	_	_	_	_	20	nsubj	_	_
+19	is	_	_	_	_	20	cop	_	_
+20	available	_	_	_	_	14	acl:relcl	_	_
+21	,	_	_	_	_	20	punct	_	_
+22	for	_	_	_	_	23	case	_	_
+23	example	_	_	_	_	20	obl	_	_
+24	,	_	_	_	_	12	punct	_	_
+25	when	_	_	_	_	26	mark	_	_
+26	tagging	_	_	_	_	20	advcl	_	_
+27	languages	_	_	_	_	26	obj	_	_
+28	for	_	_	_	_	29	case	_	_
+29	which	_	_	_	_	34	obl	_	_
+30	no	_	_	_	_	31	det	_	_
+31	data	_	_	_	_	34	nsubj:pass	_	_
+32	was	_	_	_	_	34	aux:pass	_	_
+33	previously	_	_	_	_	34	advmod	_	_
+34	tagged	_	_	_	_	27	acl:relcl	_	_
+35	.	_	_	_	_	12	punct	_	_
+

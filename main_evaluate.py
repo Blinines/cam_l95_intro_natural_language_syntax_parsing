@@ -41,17 +41,27 @@ def process_spec_col(s):
     return int(tp), int(f)
 
 
-def get_metrics(df, first_col_name, dep, index, mode='recall'):
+def get_line_info(df, first_col_name, dep, mode='recall'):
+    if mode == 'precision':
+        return deepcopy(df[df[first_col_name]==dep].values[0][1:])
+    else:
+        return deepcopy(df[dep].values)
+
+
+def get_metrics(df, first_col_name, dep_list, dep_to_index, mode='recall'):
     """ Computes precision or recall of a given dependency
     mode in ['precision', 'recall'] 
-    Default (arbitrary) recall """
-    if mode == 'precision':
-        line_info = deepcopy(df[df[first_col_name]==dep].values[0][1:])
-    else:
-        line_info = deepcopy(df[dep].values)
-    
-    tp, f = process_spec_col(line_info[index])
-    line_info[index] = f
+    Default (arbitrary) recall 
+    dep: list of dependency to take into account.
+    Basic metric => list of one element, upper level => several elemets"""
+    tp, denom = 0, 0
+    for dep in dep_list:
+        index = dep_to_index[dep]
+        line_info = get_line_info(df, first_col_name, dep, mode)
+        curr_tp, curr_f = process_spec_col(line_info[index])
+        line_info[index] = curr_f
+        tp += curr_tp
+        denom += np.sum(line_info)
 
     if np.sum(line_info) + tp != 0:
         return float(tp)/(np.sum(line_info) + tp)
@@ -66,25 +76,31 @@ def get_f1_score(precision, recall):
         return 'N/A'
 
 
-def get_support(df, first_col_name, dep, index):
-    line_info = deepcopy(df[df[first_col_name]==dep].values[0][1:])
-    tp, f = process_spec_col(line_info[index])
-    line_info[index] = f
-    return(np.sum(line_info) + tp)
+def get_support(df, first_col_name, dep_list, dep_to_index):
+    res = 0
+    for dep in dep_list:
+        index = dep_to_index[dep]
+        line_info = deepcopy(df[df[first_col_name]==dep].values[0][1:])
+        tp, f = process_spec_col(line_info[index])
+        line_info[index] = f
+        res += np.sum(line_info) + tp
+    return(res)
 
 
-def display_metrics(df, first_col_name, cols_dep):
+def display_metrics(df, first_col_name, dep_dict, dep_to_index):
     res = {'precision': [], 'recall': [], 'f1-score': [], 'support': []}
-    for index, dep in enumerate(cols_dep[1:]):
-        precision = get_metrics(df, first_col_name, dep, index, mode='precision')
-        recall = get_metrics(df, first_col_name, dep, index, mode='recall')
+    index_df = []
+    for dep, dep_list in dep_dict.items():
+        precision = get_metrics(df, first_col_name, dep_list, dep_to_index, mode='precision')
+        recall = get_metrics(df, first_col_name, dep_list, dep_to_index, mode='recall')
         f1 = get_f1_score(precision, recall)
-        support = get_support(df, first_col_name, dep, index)
+        support = get_support(df, first_col_name, dep_list, dep_to_index)
         res['precision'].append(precision)
         res['recall'].append(recall)
         res['f1-score'].append(f1)
         res['support'].append(support)
-    res_df = pd.DataFrame(data=res, index=cols_dep[1:])
+        index_df.append(dep)
+    res_df = pd.DataFrame(data=res, index=index_df)
     print(res_df)
 
 
@@ -100,11 +116,19 @@ if __name__=='__main__':
         config_global = yaml.load(file, Loader=yaml.FullLoader)
     cols_dep = config_global['general']['dep_level_0']
     first_col_name = config_global['general']['first_col_name']
-    cols_dep = [first_col_name] + cols_dep
+    dep_level_upper = config_global['general']['dep_level_upper']
+
+    dep_to_index, dep_level_0_dict = {}, {}
+    for index, dep in enumerate(cols_dep):
+        dep_to_index[dep] = index
+        dep_level_0_dict[dep] = [dep]
     
     df = pd.read_excel(config_global['general']['analysis_path'], 
                        sheet_name=config_global['general']['sheet_names'][args['parser']])
-    df = df[cols_dep].fillna(0)
+    df = df[[first_col_name] + cols_dep].fillna(0)
 
-    display_metrics(df=df, first_col_name=first_col_name, cols_dep=cols_dep)
-    
+    print('{0} - Dependency metrics - unique relations'.format(args['parser']))
+    display_metrics(df=df, first_col_name=first_col_name, dep_dict=dep_level_0_dict, dep_to_index=dep_to_index)
+    print('=====')
+    print('{0} - Dependency metrics - grouped relations'.format(args['parser']))
+    display_metrics(df=df, first_col_name=first_col_name, dep_dict=dep_level_upper, dep_to_index=dep_to_index)

@@ -23,6 +23,27 @@ general:
                 'preconj', 'vmod', 'mwe', 'mark', 'advmod', 'neg', 'rcmod', 'quantmod', 'nn', 
                 'npadvmod', 'tmod', 'num', 'number', 'prep', 'prepc', 'poss', 'possessive', 
                 'prt', 'parataxis', 'goeswith', 'punct', 'ref', 'xsubj']
+  dep_level_upper:
+    aux: ['aux', 'auxpass', 'cop']
+    arg: ['agent', 'acomp', 'ccomp', 'xcomp', 'dobj', 'iobj', 'pobj',
+          'nsubj', 'nsubjpass', 'csubj', 'csubjpass']
+    comp: ['acomp', 'ccomp', 'xcomp', 'dobj', 'iobj', 'pobj']
+    obj: ['dobj', 'iobj', 'pobj']
+    subj: ['nsubj', 'nsubjpass', 'csubj', 'csubjpass']
+    nsubj: ['nsubj', 'nsubjpass']
+    csubj: ['csubj', 'csubjpass']
+    mod: ['amod', 'appos', 'advcl', 'det', 'predet', 'preconj', 'vmod', 
+          'mwe', 'mark', 'advmod', 'neg', 'rcmod', 'quantmod', 'nn', 
+          'npadvmod', 'tmod', 'num', 'number', 'prep', 'poss', 'possessive', 'prt']
+    mwe: ['mwe', 'mark']
+    advmod: ['advmod', 'neg']
+    npadvmod: ['npadvmod', 'tmod']
+  analysis_path: './analysis.xlsx'
+  sheet_names: 
+    benepar: 'Benepar'
+    stanford: 'Stanford'
+    rasp: 'RASP'
+  first_col_name: 'column=gold, line=parser'
   hierarchy:
     root: 0
     dep:
@@ -79,5 +100,17 @@ general:
       ref: 0
       sdep: 
           xsubj: 0
-
+  sentences:
+    1: "It was my aunt's car which we sold at auction last year in February."
+    2: "It won't rain but there might be snow on high ground if the temperature stays about the same over the next 24 hours."
+    3: "My wildest dream is to build a POS tagger which processes 10K words per second and uses only 1MB of RAM, but it may prove too hard."
+    4: "English also has many words of more or less unique function, including interjections (oh, ah), negatives (no, not), politeness markers (please, thank you), and the existential 'there' (there are horses but not unicorns) among others."
+    5: "The Penn Treebank tagset was culled from the original 87-tag tagset for the Brown Corpus. For example the original Brown and C5 tagsets include a separate tag for each of the different forms of the verbs do (eg C5 tag VDD for did and VDG tag for doing), be and have."
+    6: ""
+    7: "The slightly simplified version of the Viterbi algorithm that we present takes as input a single HMM and a sequence of observed words O = (o1,o2,oT) and returns the most probable state/tag sequence Q = (q1,q2,qT) together with its probability."
+    8: "Thus the EM-trained 'pure HMM' tagger is probably best suited to cases where no training data is available, for example, when tagging languages for which no data was previously hand-tagged."
+    9: "An MoD spokesman said: 'Surveys of Astute have now been completed and she will proceed to Faslane under her own power.' She is being escorted by tugs and HMS Shoreham."
+    10: ""
+    11: "But far fewer people fully understand how the Media Lab operates, fits into MIT, and encourages such a creative environment; about half of the anniversary celebration's program focused on simply defining what the Media Lab is."
+    12: "Instead of constantly worrying about funding, the faculty and students can focus on their project, with the exception of sponsors' weeks, when they have to convince companies to start or continue their support."
 

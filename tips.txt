@@ -78,3 +78,25 @@ be active or passive?, negation as determiners, amod/advmod/mark
 - sent-9. cc/punct (provide NB, not most important dependency relation hence ok), simply defining what the media lab is
 - sent-10. Instead of constantly worrying, have to convince companies
 
+Notes on RASP sentences
+- General : RASP notations do not use punctuation tagging, hence disregarded for this part of study.
+- sent-1. Head for gold standard = car, =was for RASP system, just different notations. ncsubj = nsubj, prep and iobj,
+dobj and pobj, at auction (last year)(in February) vs at auction (last year in February)
+- sent-2. be (snow)(on high ground) vs be (snow on high ground). about the same differences between RASP and SD in terms
+of notations
+- sent-3. Poss treated as det for rasp notations. `it may prove too hard` relating to the root (gold) or to the using part 
+only (rasp). Conj and nsubj problem for rasp. 
+- sent-4. Deals with () differently => not taken into account. For RASP out of 53 tokens, 24 not tagged. Does not deal
+well with long dependencies, conj/cc, lots of variants for RASP's ncmod in SD.
+- sent-5. RASP interprets : (Brown)&(C5 tagsets). 2nd sentence wrong head. include of. (C5)(tag)(VDD), (C5 tag)(VDD).
+Some tokens not tagged in RASP version (excluding punctuation, 8/53). 
+sent-6. Same remark than for the last two parsers. => modifying the sentence so that it can work. interpreted by the RASP
+parser : (we present ((takes as input an HMM)and(a sequence of words))and(returns the most probable state). Structure as 
+a whole not coherent. + RASP does not analyze all the words, making it harder to find the root for example. Unclear about
+the root.
+- sent-7. Contrary to the two other parsers, keep words like hand-tagged together. in RASP : Thus linked to EM-trained.
+long nn sequence hard to decompose correctly for the parser. 
+- sent-8. proceed (to faslane under) vs proceed(to faslane)(under)
+- sent-9. RASP does not tokenise everything, seems to `forget` beginning-of-sentence conj like 'but'. => not taken into
+account for comparison. The Media Lab do not recognize the head of NP. 
+- sent-10. start or continue their support. 

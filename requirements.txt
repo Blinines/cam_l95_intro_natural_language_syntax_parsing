@@ -9,4 +9,5 @@ spacy==2.2.2
 nltk==3.4.5
 PyStanfordDependencies==0.3.1
 pyyaml==5.1.2
-
+pandas==0.25.3
+xlrd==1.2.0

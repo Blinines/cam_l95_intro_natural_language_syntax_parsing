@@ -45,12 +45,15 @@ def get_rasp_structure(lines):
         else:
             index +=1
     
+    if block_end == []:
+        block_end.append(len(lines))
+    
     return sent_begin, dep_begin, block_end
 
 def get_words_sent(lines, index):
     # Getting words in order from the sentence line
     right_part = ' |;| '.join(lines[index].split(';')[:-1])
-    raw_words_draft = [elt for elt in right_part[2:-5].split('|') if elt != ' ' ]
+    raw_words_draft = [elt for elt in right_part[2:-5].split('|') if elt not in [' ', ' \\ '] ]
     raw_words = []
     for elt in raw_words_draft:
         pot_words = elt.split(' ')

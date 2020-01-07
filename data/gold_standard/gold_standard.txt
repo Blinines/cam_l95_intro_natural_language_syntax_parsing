@@ -238,41 +238,41 @@
 
 # sent_id = sent-7
 # text =  Thus the EM-trained “pure HMM” tagger is probably best suited to cases where no training data is available, for example, when tagging languages for which no data was previously hand-tagged.
-1	Thus			_	_	_	_	12	advmod	_	_
-2	the 			_	_	_	_	8	det		_	_
-3	EM-trained		_	_	_	_	8	amod		_	_
-4	“			_	_	_	_	6	punct		_	_
-5	pure			_	_	_	_	6	amod		_	_
-6	HMM			_	_	_	_	8	nn		_	_
-7	“			_	_	_	_	6	punct		_	_
-8	tagger		_	_	_	_	12	nsubj		_	_
-9	is			_	_	_	_	12	aux		_	_
-10	probably		_	_	_	_	12	advmod	_	_
-11	best			_	_	_	_	12	amod		_	_
-12	suited		_	_	_	_	0	root		_	_
-13	to			_	_	_	_	12	prep		_	_
-14	cases			_	_	_	_	13	pobj		_	_ 
-15	where			_	_	_	_	20	advmod	_	_
-16	no			_	_	_	_	18	neg		_	_
-17	training		_	_	_	_	18	amod		_	_
-18	data			_	_	_	_	20	nsubj		_	_
-19	is			_	_	_	_	20	cop		_	_
-20	available		_	_	_	_	14	advcl		_	_
-21	,			_	_	_	_	14	punct		_	_
-22	for			_	_	_	_	14	prep		_	_
-23	example		_	_	_	_	22	pobj		_	_
-24	,			_	_	_	_	14	punct		_	_
-25	when			_	_	_	_	26	advmod	_	_
-26	tagging		_	_	_	_	12	advcl		_	_
-27	languages		_	_	_	_	26	dobj		_	_
-28	for			_	_	_	_	34	prep		_	_
-29	which			_	_	_	_	28	dobj		_	_
-30	no			_	_	_	_	31	neg		_	_
-31	data			_	_	_	_	34	nsubjpass	_	_
-32	was			_	_	_	_	34	auxpass	_	_
-33	previously		_	_	_	_	34	advmod	_	_
-34	hand-tagged	_	_	_	_	27	rcmod		_	_
-35	.			_	_	_	_	12	punct		_	_
+1	Thus	_	_	_	_	12	advmod	_	_
+2	the	_	_	_	_	8	det	_	_
+3	EM-trained	_	_	_	_	8	amod	_	_
+4	“	_	_	_	_	6	punct	_	_
+5	pure	_	_	_	_	6	amod	_	_
+6	HMM	_	_	_	_	8	nn	_	_
+7	“	_	_	_	_	6	punct	_	_
+8	tagger	_	_	_	_	12	nsubj	_	_
+9	is	_	_	_	_	12	aux	_	_
+10	probably	_	_	_	_	12	advmod	_	_
+11	best	_	_	_	_	12	amod	_	_
+12	suited_	_	_	_	0	root	_	_
+13	to	_	_	_	_	12	prep	_	_
+14	cases	_	_	_	_	13	pobj	_	_ 
+15	where	_	_	_	_	20	advmod	_	_
+16	no	_	_	_	_	18	neg	_	_
+17	training	_	_	_	_	18	amod	_	_
+18	data	_	_	_	_	20	nsubj	_	_
+19	is	_	_	_	_	20	cop	_	_
+20	available	_	_	_	_	14	advcl	_	_
+21	,	_	_	_	_	14	punct	_	_
+22	for	_	_	_	_	14	prep	_	_
+23	example	_	_	_	_	22	pobj	_	_
+24	,	_	_	_	_	14	punct	_	_
+25	when	_	_	_	_	26	advmod	_	_
+26	tagging	_	_	_	_	12	advcl	_	_
+27	languages	_	_	_	_	26	dobj	_	_
+28	for	_	_	_	_	34	prep	_	_
+29	which	_	_	_	_	28	dobj	_	_
+30	no	_	_	_	_	31	neg	_	_
+31	data	_	_	_	_	34	nsubjpass	_	_
+32	was	_	_	_	_	34	auxpass	_	_
+33	previously	_	_	_	_	34	advmod	_	_
+34	hand-tagged	_	_	_	_	27	rcmod	_	_
+35	.	_	_	_	12	punct	_	_
 
 # sent_id = sent-8
 # text = An MoD spokesman said: “Surveys of Astute have now been completed and she will proceed to Faslane under her own power. She is being escorted by tugs and HMS Shoreham.”
@@ -338,7 +338,7 @@
 22	environment	_	_	_	_	18	dobj	_	_
 23	;	_	_	_	_	6	punct	_	_
 24	about	_	_	_	_	25	quantmod	_	_
-25	half	_	_	_	_	31	nsubj	_	_
+25	half	_	_	_	_	32	nsubj	_	_
 26	of	_	_	_	_	25	prep	_	_
 27	the	_	_	_	_	29	det	_	_
 28	anniversary	_	_	_	_	29	nn	_	_

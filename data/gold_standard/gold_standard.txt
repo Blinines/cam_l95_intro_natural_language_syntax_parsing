@@ -92,8 +92,8 @@
 10	unique	_	_	_	_	11	amod	_	_
 11	function	_	_	_	_	6	pobj	_	_
 12	,	_	_	_	_	3	punct	_	_
-13	including	_	_	_	_	5	vmod	_	_
-14	interjections	_	_	_	_	13	dobj	_	_
+13	including	_	_	_	_	5	prep	_	_
+14	interjections	_	_	_	_	13	pobj	_	_
 15	(	_	_	_	_	16	punct	_	_
 16	oh	_	_	_	_	14	appos	_	_
 17	,	_	_	_	_	16	punct	_	_
@@ -245,16 +245,16 @@
 5	pure	_	_	_	_	6	amod	_	_
 6	HMM	_	_	_	_	8	nn	_	_
 7	“	_	_	_	_	6	punct	_	_
-8	tagger	_	_	_	_	12	nsubj	_	_
-9	is	_	_	_	_	12	aux	_	_
+8	tagger	_	_	_	_	12	nsubjpass	_	_
+9	is	_	_	_	_	12	auxpass	_	_
 10	probably	_	_	_	_	12	advmod	_	_
-11	best	_	_	_	_	12	amod	_	_
+11	best	_	_	_	_	12	advmod	_	_
 12	suited_	_	_	_	0	root	_	_
 13	to	_	_	_	_	12	prep	_	_
 14	cases	_	_	_	_	13	pobj	_	_ 
 15	where	_	_	_	_	20	advmod	_	_
 16	no	_	_	_	_	18	neg	_	_
-17	training	_	_	_	_	18	amod	_	_
+17	training	_	_	_	_	18	nn	_	_
 18	data	_	_	_	_	20	nsubj	_	_
 19	is	_	_	_	_	20	cop	_	_
 20	available	_	_	_	_	14	advcl	_	_

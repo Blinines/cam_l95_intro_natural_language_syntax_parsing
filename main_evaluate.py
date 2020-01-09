@@ -101,8 +101,20 @@ def display_metrics(df, first_col_name, dep_dict, dep_to_index):
         res['support'].append(support)
         index_df.append(dep)
     res_df = pd.DataFrame(data=res, index=index_df)
-    print(res_df)
+    return res_df
 
+
+def round_cols(x):
+    if x != 'N/A':
+        return round(float(x), 2)
+    else:
+        return x
+
+
+def format_df(df, f, cols):
+    for col in cols:
+        df[col] = df[col].apply(f)
+    return df
 
 if __name__=='__main__':
     # Construct the argument parser
@@ -128,7 +140,10 @@ if __name__=='__main__':
     df = df[[first_col_name] + cols_dep].fillna(0)
 
     print('{0} - Dependency metrics - unique relations'.format(args['parser']))
-    display_metrics(df=df, first_col_name=first_col_name, dep_dict=dep_level_0_dict, dep_to_index=dep_to_index)
+    res_df = display_metrics(df=df, first_col_name=first_col_name, dep_dict=dep_level_0_dict, dep_to_index=dep_to_index)
+    res_df = format_df(df=res_df, f=round_cols, cols=['precision', 'recall', 'f1-score'])
+    print(res_df)
     print('=====')
     print('{0} - Dependency metrics - grouped relations'.format(args['parser']))
-    display_metrics(df=df, first_col_name=first_col_name, dep_dict=dep_level_upper, dep_to_index=dep_to_index)
+    res_df = display_metrics(df=df, first_col_name=first_col_name, dep_dict=dep_level_upper, dep_to_index=dep_to_index)
+    print(res_df)

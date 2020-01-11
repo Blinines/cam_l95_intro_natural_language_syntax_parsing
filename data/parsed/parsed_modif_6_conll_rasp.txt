@@ -28,12 +28,14 @@
 27	the	_	_	_	_	31	det	_	_
 28	most	_	_	_	_	31	ncmod	_	_
 29	probable	_	_	_	_	31	ncmod	_	_
-30	state/tag	_	_	_	_	31	ncmod	_	_
-31	sequence	_	_	_	_	26	dobj	_	_
-32	Q	_	_	_	_	26	obj2	_	_
-33	together	_	_	_	_	34	ncmod	_	_
-34	with	_	_	_	_	26	ncmod	_	_
-35	its	_	_	_	_	36	det	_	_
-36	probability	_	_	_	_	34	dobj	_	_
-37	.	_	_	_	_	None	None	_	_
+30	state	_	_	_	_	31	conj	_	_
+31	and	_	_	_	_	26	dobj	_	_
+32	tag	_	_	_	_	33	ncmod	_	_
+33	sequence	_	_	_	_	31	conj	_	_
+34	Q	_	_	_	_	26	obj2	_	_
+35	together	_	_	_	_	36	ncmod	_	_
+36	with	_	_	_	_	26	ncmod	_	_
+37	its	_	_	_	_	38	det	_	_
+38	probability	_	_	_	_	36	dobj	_	_
+39	.	_	_	_	_	None	None	_	_
 

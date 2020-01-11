@@ -7,31 +7,6 @@ import numpy as np
 from copy import deepcopy
 from helpers import get_elt_to_index
 
-def convert_hierarchy_to_deprel_root(h, deprel_to_root={}, to_add=[]):
-    """ Convert hierarchy of typed dependencies to a hashmap
-    from dependencies to all its parents """
-    for dep in h.keys():
-        # adding upper dependencies
-        deprel_to_root[dep] = [dep] + to_add
-        # adding any additional dependencies
-        if h[dep]:
-            deprel_to_root = convert_hierarchy_to_deprel_root(h=h[dep], 
-                                                              deprel_to_root=deprel_to_root,
-                                                              to_add=to_add+[dep])
-    
-    return deprel_to_root
-
-
-def get_dep_list(data_path):
-    data_file = open(data_path, 'r', encoding='utf-8')
-    lines = data_file.readlines()
-    lines = [sent.split('\t') for sent in lines]
-    dep = []
-    for elt in lines:
-        if len(elt)==10:
-            dep.append(elt[7])
-    return dep
-
 
 def process_spec_col(s):
     info = s.split('/')
@@ -63,8 +38,8 @@ def get_metrics(df, first_col_name, dep_list, dep_to_index, mode='recall'):
         tp += curr_tp
         denom += np.sum(line_info)
 
-    if np.sum(line_info) + tp != 0:
-        return float(tp)/(np.sum(line_info) + tp)
+    if denom + tp != 0:
+        return float(tp)/(denom + tp)
     else:
         return 'N/A'
 
@@ -77,28 +52,41 @@ def get_f1_score(precision, recall):
 
 
 def get_support(df, first_col_name, dep_list, dep_to_index):
-    res = 0
+    # tp, fn, fp
+    # nb_gold = tp+fn
+    # nb_parser = tp+fp
+    tp, fn, fp = 0, 0, 0
     for dep in dep_list:
         index = dep_to_index[dep]
-        line_info = deepcopy(df[df[first_col_name]==dep].values[0][1:])
-        tp, f = process_spec_col(line_info[index])
-        line_info[index] = f
-        res += np.sum(line_info) + tp
-    return(res)
+        line_info_gold = deepcopy(df[df[first_col_name]==dep].values[0][1:])
+        line_info_parser = deepcopy(df[dep].values)
+
+        curr_tp, curr_fp = process_spec_col(line_info_gold[index])
+        line_info_gold[index] = curr_fp
+
+        tp += curr_tp
+        fp += np.sum(line_info_gold)
+
+        _, curr_fn = process_spec_col(line_info_parser[index])
+        line_info_parser[index] = curr_fn
+        fn += np.sum(line_info_parser) 
+    return(tp, fn, fp)
 
 
 def display_metrics(df, first_col_name, dep_dict, dep_to_index):
-    res = {'precision': [], 'recall': [], 'f1-score': [], 'support': []}
+    res = {'precision': [], 'recall': [], 'f1-score': [], 'tp': [], 'fn': [], 'fp': []}
     index_df = []
     for dep, dep_list in dep_dict.items():
         precision = get_metrics(df, first_col_name, dep_list, dep_to_index, mode='precision')
         recall = get_metrics(df, first_col_name, dep_list, dep_to_index, mode='recall')
         f1 = get_f1_score(precision, recall)
-        support = get_support(df, first_col_name, dep_list, dep_to_index)
+        tp, fn, fp = get_support(df, first_col_name, dep_list, dep_to_index)
         res['precision'].append(precision)
         res['recall'].append(recall)
         res['f1-score'].append(f1)
-        res['support'].append(support)
+        res['tp'].append(tp)
+        res['fn'].append(fn)
+        res['fp'].append(fp)
         index_df.append(dep)
     res_df = pd.DataFrame(data=res, index=index_df)
     return res_df
@@ -115,6 +103,33 @@ def format_df(df, f, cols):
     for col in cols:
         df[col] = df[col].apply(f)
     return df
+
+
+def macro_avg(df, col):
+    """ col in ['precision', 'recall']"""
+    values = df[col].values
+    sum, nb = 0, 0
+    for elt in values:
+            if elt != 'N/A':
+                sum += float(elt)
+                nb += 1
+    return round(sum/nb, 2)
+
+
+def micro_avg(df, col):
+    """ col in ['precision', 'recall']"""
+    tp = df['tp'].values
+    if col == 'precision':
+        f = df['fp'].values
+    else:
+        f = df['fn'].values
+    
+    num, denum = 0, 0
+    for index, value in enumerate(tp):
+        num += value
+        denum += value + f[index]
+    return round(float(num)/denum, 2)
+    
 
 if __name__=='__main__':
     # Construct the argument parser
@@ -140,10 +155,26 @@ if __name__=='__main__':
     df = df[[first_col_name] + cols_dep].fillna(0)
 
     print('{0} - Dependency metrics - unique relations'.format(args['parser']))
-    res_df = display_metrics(df=df, first_col_name=first_col_name, dep_dict=dep_level_0_dict, dep_to_index=dep_to_index)
-    res_df = format_df(df=res_df, f=round_cols, cols=['precision', 'recall', 'f1-score'])
-    print(res_df)
+    res_df_unique = display_metrics(df=df, first_col_name=first_col_name, dep_dict=dep_level_0_dict, dep_to_index=dep_to_index)
+    res_df_unique = format_df(df=res_df_unique, f=round_cols, cols=['precision', 'recall', 'f1-score'])
+    #print(res_df_unique[['precision', 'recall', 'f1-score']])
+    print(res_df_unique)
     print('=====')
+
     print('{0} - Dependency metrics - grouped relations'.format(args['parser']))
-    res_df = display_metrics(df=df, first_col_name=first_col_name, dep_dict=dep_level_upper, dep_to_index=dep_to_index)
-    print(res_df)
+    res_df_grouped = display_metrics(df=df, first_col_name=first_col_name, dep_dict=dep_level_upper, dep_to_index=dep_to_index)
+    res_df_grouped = format_df(df=res_df_grouped, f=round_cols, cols=['precision', 'recall', 'f1-score'])
+    #print(res_df_grouped[['precision', 'recall', 'f1-score']])
+    print(res_df_grouped)
+    print('=====')
+
+    print('{0} - Macro and micro average'.format(args['parser']))
+    df_avg = pd.concat([res_df_unique, res_df_grouped])
+    macro_precision, macro_recall = macro_avg(df=df_avg, col='precision'), macro_avg(df=df_avg, col='recall')
+    micro_precision, micro_recall = micro_avg(df=df_avg, col='precision'), micro_avg(df=df_avg, col='recall')
+    print('Macro average - precision : {0}'.format(macro_precision))
+    print('Macro average - recall    : {0}'.format(macro_recall))
+    print('Macro average - F1        : {0}'.format(round(2./((1./macro_precision) + (1./macro_recall)), 2)))
+    print('Micro average - precision : {0}'.format(micro_precision))
+    print('Micro average - recall    : {0}'.format(micro_recall))
+    print('Micro average - F1        : {0}'.format(round(2./((1./micro_precision) + (1./micro_recall)), 2)))

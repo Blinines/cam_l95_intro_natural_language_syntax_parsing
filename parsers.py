@@ -210,11 +210,15 @@ class RaspNLP(Parser):
             print("RASP not configured for this OS, aborting")
         return self
     
-    def write_conll_format(self, parsed_path, save_path, lines_path=None, spec_to_sent=True):
+    def write_conll_format(self, parsed_path, save_path, lines_path=None, spec_to_sent=False):
         # Converting output of RASP algorithm on Linux into conll format.
         # If output was transferred into Windows system, can be done.
         f = open(save_path, 'w+', encoding='utf-8')
-        rasp_file = open(parsed_path, 'r', encoding='utf-8')
+        try:
+            rasp_file = open(parsed_path, 'r', encoding='utf-8')
+        except Exception as e:
+            print('RASP file does not exist. Aborting.')
+            return
         lines = rasp_file.readlines()
         sent_begin, dep_begin, block_end = get_rasp_structure(lines=lines)
         nb_sent = len(sent_begin)
